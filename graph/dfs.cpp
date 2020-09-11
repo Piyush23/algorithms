@@ -33,25 +33,31 @@ void dfs(vector <vector<int>> v, int st){
 }
 
 int main(){
-	//taking input
-	int n,e;
-	cout<<"vertices: ";cin>>n;
-	cout<<"edges: ";cin>>e; //vertices, edges
+	//static graph (directed) adj list
+    //0->1->5
+    //1->2->3
+    //2->4
+    //3->4
+    //5->3
+    int n=6; // number of vertices
+    vector<vector<int>> adj(n); // adjacency list of graph
+    
+    adj[0].push_back(1);
+    adj[0].push_back(5);
+
+    adj[1].push_back(2);
+    adj[1].push_back(3);
+
+    adj[2].push_back(4);
+    
+    adj[3].push_back(4);
+    
+    adj[5].push_back(3);
 	
-	vector <vector <int>> v(n);
-	int i,j; //vertex 1, vertex 2
-	
-	for(int k=0; k<e;k++){
-		cout<<"edge "<<k+1<<" : ";
-		cin>>i>>j;
-		v[i].push_back(j);
-		v[j].push_back(i); //for undirected graph
-	}
-	
-	printAdjList(v);
+	printAdjList(adj);
 	int s;
 	cout<<"start vertex: ";cin>>s;
-	dfs(v,s);
+	dfs(adj,s);
 	
 	return 0;
 }
